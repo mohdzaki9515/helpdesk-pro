@@ -11,12 +11,6 @@
 <meta name="description" content="Portal Aduan & Sistem Pengurusan Tiket">
 <link rel="manifest" id="manifest-link">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<meta property="og:title" content="HelpDesk Pro — Portal Aduan & Sistem Tiket">
-<meta property="og:description" content="Sistem pengurusan tiket aduan teknikal. Portal pengadu + Dashboard staf dalam satu fail HTML.">
-<meta property="og:image" content="assets/og-preview.svg">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-
 <title>HelpDesk Pro — Portal Aduan</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -688,7 +682,7 @@ textarea.form-control{min-height:80px;resize:vertical;}
 }
 
 
-/* ═══ Shared Portal+Dashboard ═══ */
+/* ═══ Unified overrides ═══ */
 #portal-view{background:#f8fafc;color:#0f172a;min-height:100vh;}
 #dashboard-view{background:#0d0f14;color:#e8ecf5;}
 #login-overlay{display:none;}
@@ -699,14 +693,12 @@ textarea.form-control{min-height:80px;resize:vertical;}
 #d-toast.error{border-color:rgba(255,92,110,.4);}
 #d-toast.info{border-color:rgba(79,142,247,.4);}
 #d-toast.warning{border-color:rgba(255,159,69,.4);}
-/* Portal tabs */
 .p-tab-pane{display:none;}
 .p-tab-pane.active{display:block;animation:pfadeIn .25s ease;}
 @keyframes pfadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .p-tab-btn{flex:1;padding:10px 6px;border:none;border-radius:10px;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.5);transition:all .2s;}
 .p-tab-btn.active{background:#3b82f6;color:#fff;box-shadow:0 4px 12px rgba(59,130,246,.4);}
 .p-tab-btn:hover:not(.active){background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);}
-/* Priority cards */
 .pri-card{padding:12px 14px;border-radius:10px;border:2px solid #e2e8f0;cursor:pointer;transition:all .2s;background:#f8fafc;}
 .pri-card:hover{border-color:#3b82f6;}
 .pri-card.selected.kritikal{border-color:#dc2626;background:rgba(220,38,38,.05);}
@@ -716,13 +708,11 @@ textarea.form-control{min-height:80px;resize:vertical;}
 .pri-icon{font-size:18px;margin-bottom:4px;}
 .pri-label{font-size:12.5px;font-weight:700;margin-bottom:2px;}
 .pri-desc{font-size:11px;color:#64748b;line-height:1.4;}
-/* Portal form inputs */
 .p-input{width:100%;padding:11px 14px;background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:10px;color:#0f172a;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
 .p-input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1);}
 .p-input::placeholder{color:#94a3b8;}
 textarea.p-input{min-height:110px;resize:vertical;line-height:1.6;}
 select.p-input{cursor:pointer;background:#f1f5f9;}
-/* Status cards (semak tab) */
 .status-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:13px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all .2s;}
 .status-card:hover,.status-card.expanded{border-color:#3b82f6;}
 .status-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
@@ -951,7 +941,9 @@ select.p-input{cursor:pointer;background:#f1f5f9;}
   </div>
 </div>
 
-<!-- ═══════ LOGIN OVERLAY ═══════ -->
+
+
+<!-- ═══ LOGIN OVERLAY ═══ -->
 <div id="login-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:2000;display:none;align-items:center;justify-content:center;">
   <div style="background:#161921;border:1px solid #2a2f3d;border-radius:20px;padding:40px;width:400px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.7);position:relative;">
     <style>@keyframes lbUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}</style>
@@ -963,22 +955,20 @@ select.p-input{cursor:pointer;background:#f1f5f9;}
     </div>
     <div id="lb-err" style="background:rgba(255,92,110,.1);border:1px solid rgba(255,92,110,.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#ff5c6e;margin-bottom:14px;display:none;">Username atau kata laluan salah.</div>
     <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#6b7494;margin-bottom:6px;">Nama Pengguna</label>
-    <input id="lb-user" type="text" placeholder="Username..." autocomplete="off"
-      style="width:100%;padding:11px 14px;background:#1e2230;border:1.5px solid #2a2f3d;border-radius:10px;color:#e8ecf5;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:14px;transition:border-color .2s;">
+    <input id="lb-user" type="text" placeholder="Username..." autocomplete="username" style="width:100%;padding:11px 14px;background:#1e2230;border:1.5px solid #2a2f3d;border-radius:10px;color:#e8ecf5;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:14px;">
     <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#6b7494;margin-bottom:6px;">Kata Laluan</label>
-    <input id="lb-pass" type="password" placeholder="Kata laluan..."
-      style="width:100%;padding:11px 14px;background:#1e2230;border:1.5px solid #2a2f3d;border-radius:10px;color:#e8ecf5;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:16px;transition:border-color .2s;">
-    <button onclick="doLogin()" style="width:100%;padding:12px;background:linear-gradient(135deg,#4f8ef7,#7c5cfc);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px rgba(79,142,247,.35);margin-bottom:14px;">🔐 Log Masuk</button>
+    <input id="lb-pass" type="password" placeholder="Kata laluan..." autocomplete="current-password" style="width:100%;padding:11px 14px;background:#1e2230;border:1.5px solid #2a2f3d;border-radius:10px;color:#e8ecf5;font-size:13.5px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:16px;">
+    <button onclick="_doLogin()" style="width:100%;padding:12px;background:linear-gradient(135deg,#4f8ef7,#7c5cfc);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px rgba(79,142,247,.35);margin-bottom:14px;">🔐 Log Masuk</button>
     <div style="text-align:center;font-size:11px;color:#6b7494;margin-bottom:8px;">Akaun demo:</div>
     <div style="display:flex;gap:8px;justify-content:center;">
-      <button onclick="quickLogin('admin','admin123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#7c5cfc;font-family:'DM Sans',sans-serif;transition:all .2s;">👑 Admin</button>
-      <button onclick="quickLogin('staf1','staf123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#4f8ef7;font-family:'DM Sans',sans-serif;transition:all .2s;">👤 Staf</button>
-      <button onclick="quickLogin('tech1','tech123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#29d99e;font-family:'DM Sans',sans-serif;transition:all .2s;">🔧 Teknikal</button>
+      <button onclick="quickLogin('admin','admin123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#7c5cfc;font-family:'DM Sans',sans-serif;">👑 Admin</button>
+      <button onclick="quickLogin('staf1','staf123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#4f8ef7;font-family:'DM Sans',sans-serif;">👤 Staf</button>
+      <button onclick="quickLogin('tech1','tech123')" style="padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1px solid #2a2f3d;background:#1e2230;color:#29d99e;font-family:'DM Sans',sans-serif;">🔧 Teknikal</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════ DASHBOARD STAF/ADMIN ═══════ -->
+<!-- ═══ DASHBOARD ═══ -->
 <div id="dashboard-view" style="display:none;background:#0d0f14;color:#e8ecf5;min-height:100vh;">
 <nav class="sidebar" id="sidebar" style="display:none;">
   <div class="logo"><div class="logo-text">HelpDesk Pro</div><div class="logo-sub">Ticket Management</div></div>
@@ -992,14 +982,14 @@ select.p-input{cursor:pointer;background:#f1f5f9;}
   <div class="nav-item" onclick="showPage('audit')" id="nav-audit" style="display:none;"><span class="nav-icon">📜</span><span class="nav-label">Log Audit</span><span class="nav-badge" id="nb-audit" style="display:none">!</span></div>
   <div class="sidebar-footer">
     <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="openProfile()" title="Kemaskini Profil">
-      <div class="user-avatar" id="sb-avatar">A</div>
+      <div class="user-avatar" id="d-sb-avatar">A</div>
       <div>
-        <div style="font-size:13px;font-weight:600;" class="nm" id="sb-name"></div>
-        <div style="font-size:11px;color:var(--muted);" class="rl" id="sb-role"></div>
+        <div style="font-size:13px;font-weight:600;" class="nm" id="d-sb-name"></div>
+        <div style="font-size:11px;color:var(--muted);" class="rl" id="d-sb-role"></div>
       </div>
       <span style="margin-left:auto;font-size:14px;color:var(--muted);" class="nm" title="Kemaskini profil">✏️</span>
     </div>
-    <button class="logout-btn" onclick="doLogout()" title="Log keluar dan balik ke Portal">🚪 Log Keluar → Portal</button>
+    <button class="logout-btn" onclick="_doLogout()">🚪 Log Keluar</button>
   </div>
 </nav>
 
@@ -1618,12 +1608,6 @@ function timeAgo(d) {
   if (diff < 1440) return Math.floor(diff/60) + ' jam lalu';
   return Math.floor(diff/1440) + ' hari lalu';
 }
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
-  t.textContent = (type==='success'?'✅ ':type==='info'?'ℹ️ ':type==='warning'?'⚠️ ':'❌ ') + msg;
-  t.className = 'toast ' + type + ' show';
-  setTimeout(() => t.className = 'toast ' + type, 3000);
-}
 function getMember(id) { return members.find(m => m.id === id); }
 
 // ============================================================
@@ -1689,51 +1673,7 @@ async function syncAll() {
 // ============================================================
 // LOGIN
 // ============================================================
-function doLogin() {
-  const u = document.getElementById('l-user').value.trim(), p = document.getElementById('l-pass').value;
-  const found = users.find(x => x.username === u && x.pass === p && x.aktif !== false);
-  if (!found) { document.getElementById('login-err').style.display = 'block'; return; }
-  currentUser = found;
-  document.getElementById('login-err').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('sidebar').style.display = 'flex';
-  document.getElementById('main-content').style.display = 'block';
-  setupUI(); renderAll(); updateSheetsBar(); updateBadges();
-  logAudit('login', `Log masuk berjaya ke sistem`);
-  updateAuditBadge();
-  startSLATimer();
-  runSLACheck();
-}
-function quickLogin(u,p) { document.getElementById('l-user').value=u; document.getElementById('l-pass').value=p; doLogin(); }
-function doLogout() {
-  logAudit('logout', 'Log keluar dari sistem');
-  if (slaTimerHandle) { clearInterval(slaTimerHandle); slaTimerHandle = null; }
-  currentUser = null;
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('sidebar').style.display = 'none';
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('l-user').value = ''; document.getElementById('l-pass').value = '';
-}
-function setupUI() {
-  const u = currentUser;
-  document.getElementById('sb-name').textContent = u.nama;
-  document.getElementById('sb-role').textContent = u.role==='admin'?'Pentadbir':u.role==='tech'?'Teknikal':'Kakitangan';
-  document.getElementById('sb-avatar').textContent = u.nama[0].toUpperCase();
-  document.getElementById('sb-avatar').style.background = u.role==='admin'?'rgba(124,92,252,0.2)':u.role==='tech'?'rgba(41,217,158,0.2)':'rgba(79,142,247,0.2)';
-  document.getElementById('sb-avatar').style.color = u.role==='admin'?'var(--accent2)':u.role==='tech'?'var(--green)':'var(--accent)';
-  const isAdmin = u.role === 'admin';
-  const canWrite = u.role !== 'viewer';
-  document.getElementById('btn-tambah').style.display = canWrite?'':'none';
-  document.getElementById('btn-tambah2').style.display = canWrite?'':'none';
-  document.getElementById('nav-pengguna').style.display = isAdmin?'flex':'none';
-  document.getElementById('nav-audit').style.display = isAdmin?'flex':'none';
-  document.getElementById('btn-add-team').style.display = isAdmin?'':'none';
-  const h = new Date().getHours();
-  document.getElementById('dash-greeting').textContent = (h<12?'Selamat Pagi':h<17?'Selamat Petang':'Selamat Malam') + `, ${u.nama}! 👋`;
-  // Populate team filters
-  populateTeamFilters();
-}
-
+function quickLogin(u,p){ document.getElementById('lb-user').value=u; document.getElementById('lb-pass').value=p; _doLogin(); }
 function populateTeamFilters() {
   ['filter-team','c-team'].forEach(id => {
     const el = document.getElementById(id); if (!el) return;
@@ -4284,7 +4224,7 @@ function timeAgo(d) {
   if (diff < 1440) return Math.floor(diff/60) + ' jam lalu';
   return Math.floor(diff/1440) + ' hari lalu';
 }
-function showToast(msg, type='success') {
+function _showToast_DEPRECATED(msg, type='success') {
   const t = document.getElementById('toast');
   t.textContent = (type==='success'?'✅ ':type==='info'?'ℹ️ ':type==='warning'?'⚠️ ':'❌ ') + msg;
   t.className = 'toast ' + type + ' show';
@@ -4355,10 +4295,7 @@ async function syncAll() {
 // ============================================================
 // LOGIN
 // ============================================================
-function doLogin() {
-  const u = document.getElementById('l-user').value.trim(), p = document.getElementById('l-pass').value;
-  const found = users.find(x => x.username === u && x.pass === p && x.aktif !== false);
-  if (!found) { document.getElementById('login-err').style.display = 'block'; return; }
+function doLogin(){ _doLogin(); }
   currentUser = found;
   document.getElementById('login-err').style.display = 'none';
   document.getElementById('login-screen').style.display = 'none';
@@ -4370,35 +4307,10 @@ function doLogin() {
   startSLATimer();
   runSLACheck();
 }
-function quickLogin(u,p) { document.getElementById('l-user').value=u; document.getElementById('l-pass').value=p; doLogin(); }
-function doLogout() {
-  logAudit('logout', 'Log keluar dari sistem');
-  if (slaTimerHandle) { clearInterval(slaTimerHandle); slaTimerHandle = null; }
-  currentUser = null;
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('sidebar').style.display = 'none';
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('l-user').value = ''; document.getElementById('l-pass').value = '';
-}
-function setupUI() {
-  const u = currentUser;
-  document.getElementById('sb-name').textContent = u.nama;
-  document.getElementById('sb-role').textContent = u.role==='admin'?'Pentadbir':u.role==='tech'?'Teknikal':'Kakitangan';
-  document.getElementById('sb-avatar').textContent = u.nama[0].toUpperCase();
-  document.getElementById('sb-avatar').style.background = u.role==='admin'?'rgba(124,92,252,0.2)':u.role==='tech'?'rgba(41,217,158,0.2)':'rgba(79,142,247,0.2)';
-  document.getElementById('sb-avatar').style.color = u.role==='admin'?'var(--accent2)':u.role==='tech'?'var(--green)':'var(--accent)';
-  const isAdmin = u.role === 'admin';
-  const canWrite = u.role !== 'viewer';
-  document.getElementById('btn-tambah').style.display = canWrite?'':'none';
-  document.getElementById('btn-tambah2').style.display = canWrite?'':'none';
-  document.getElementById('nav-pengguna').style.display = isAdmin?'flex':'none';
-  document.getElementById('nav-audit').style.display = isAdmin?'flex':'none';
-  document.getElementById('btn-add-team').style.display = isAdmin?'':'none';
-  const h = new Date().getHours();
-  document.getElementById('dash-greeting').textContent = (h<12?'Selamat Pagi':h<17?'Selamat Petang':'Selamat Malam') + `, ${u.nama}! 👋`;
-  // Populate team filters
-  populateTeamFilters();
-}
+function quickLogin(u,p){ document.getElementById('lb-user').value=u; document.getElementById('lb-pass').value=p; _doLogin(); }
+function doLogout(){ _doLogout(); }
+
+function setupUI(){ if(currentUser) setupDashboardUI(); }
 
 function populateTeamFilters() {
   ['filter-team','c-team'].forEach(id => {
@@ -6267,31 +6179,6 @@ function getSLABadge(a) {
 // ── Hook into existing functions ──────────────────────────────
 // Override renderStats to also render SLA panel
 const _origRenderStats = renderStats;
-function renderStats() {
-  _origRenderStats();
-  renderSLAPanel();
-}
-
-// ── Wire up preview live update ───────────────────────────────
-document.addEventListener('input', e => {
-  if (['esk-sv-nama','esk-nota','esk-sv-wa','esk-sv-emel'].includes(e.target.id)) {
-    updateEskalasiPreview();
-  }
-});
-
-// ============================================================
-// LOG AUDIT
-// ============================================================
-const AUDIT_ICONS = {
-  login:'🔓', logout:'🔒', tiket:'🎫', assign:'🔧', status:'🔄',
-  selesai:'✅', alert:'📣', pengguna:'👤', password:'🔐', team:'👥', default:'📋'
-};
-const AUDIT_LABELS = {
-  login:'Log Masuk', logout:'Log Keluar', tiket:'Tiket', assign:'Assignment',
-  status:'Tukar Status', selesai:'Job Done', alert:'Alert', pengguna:'Pengguna',
-  password:'Kata Laluan', team:'Team'
-};
-const MAX_AUDIT = 1000;
 
 function logAudit(type, action, ref='') {
   if (!currentUser) return;
@@ -6573,78 +6460,120 @@ if (pwaInstalled) {
 </script>
 <script>
 
-// ═══ ROUTING ═══
+// ══════════════════════════════════════
+// ROUTING & PORTAL BRIDGE
+// ══════════════════════════════════════
 let portalQrDone=false,portalInitDone=false,portalSelectedPri='Sederhana';
 
-function initApp(){showPortal();}
+// ── showToast (unified) ───────────────
+function showToast(msg,type='success'){
+  const t=document.getElementById('d-toast');
+  if(!t)return;
+  t.textContent=(type==='success'?'✅ ':type==='info'?'ℹ️ ':type==='warning'?'⚠️ ':'❌ ')+msg;
+  t.className='d-toast '+type+' show';
+  clearTimeout(window._tt);
+  window._tt=setTimeout(()=>{t.className='d-toast '+type;},3000);
+}
 
-function showPortal(){
-  document.getElementById('portal-view').style.display='block';
-  document.getElementById('dashboard-view').style.display='none';
-  const lo=document.getElementById('login-overlay');if(lo)lo.classList.remove('open');
-  document.title='HelpDesk Pro — Portal Aduan';
-  document.getElementById('theme-meta').content='#0f172a';
-  initPortal();
-}
-function showDashboard(){
-  document.getElementById('portal-view').style.display='none';
-  document.getElementById('dashboard-view').style.display='block';
-  const lo=document.getElementById('login-overlay');if(lo)lo.classList.remove('open');
-  document.title='HelpDesk Pro — Dashboard';
-  document.getElementById('theme-meta').content='#0d0f14';
-  setupDashboardUI();renderAll();updateSheetsBar();updateBadges();startSLATimer();runSLACheck();
-  logAudit('login','Log masuk ke dashboard');updateAuditBadge();
-}
-function openStaffLogin(){const lo=document.getElementById('login-overlay');if(lo){lo.classList.add('open');setTimeout(()=>document.getElementById('lb-user').focus(),50);}}
-function closeLoginOverlay(){const lo=document.getElementById('login-overlay');if(lo)lo.classList.remove('open');}
-function doLogin(){
-  const u=document.getElementById('lb-user').value.trim(),p=document.getElementById('lb-pass').value;
+// ── Bridge functions ──────────────────
+function _doLogin(){
+  const u=document.getElementById('lb-user').value.trim();
+  const p=document.getElementById('lb-pass').value;
   const found=users.find(x=>x.username===u&&x.pass===p&&x.aktif!==false);
   const errEl=document.getElementById('lb-err');
   if(!found){if(errEl)errEl.style.display='block';return;}
   if(errEl)errEl.style.display='none';
-  currentUser=found;showDashboard();
+  currentUser=found;
+  showDashboard();
 }
-function quickLogin(u,p){document.getElementById('lb-user').value=u;document.getElementById('lb-pass').value=p;doLogin();}
-function doLogout(){
+function _doLogout(){
   logAudit('logout','Log keluar dari dashboard');
-  if(slaTimerHandle){clearInterval(slaTimerHandle);slaTimerHandle=null;}
-  currentUser=null;showPortal();showToast('Anda telah log keluar.','info');
+  if(typeof slaTimerHandle!=='undefined'&&slaTimerHandle){clearInterval(slaTimerHandle);slaTimerHandle=null;}
+  currentUser=null;
+  showPortal();
+  showToast('Anda telah log keluar.','info');
 }
-document.getElementById('lb-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-document.getElementById('lb-user')?.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('lb-pass').focus();});
+
+// ── App init ──────────────────────────
+function initApp(){ showPortal(); }
+
+function showPortal(){
+  document.getElementById('portal-view').style.display='block';
+  document.getElementById('dashboard-view').style.display='none';
+  const lo=document.getElementById('login-overlay');
+  if(lo)lo.classList.remove('open');
+  document.title='HelpDesk Pro — Portal Aduan';
+  const tm=document.getElementById('theme-meta');
+  if(tm)tm.content='#0f172a';
+  initPortal();
+}
+
+function showDashboard(){
+  document.getElementById('portal-view').style.display='none';
+  document.getElementById('dashboard-view').style.display='block';
+  const lo=document.getElementById('login-overlay');
+  if(lo)lo.classList.remove('open');
+  document.title='HelpDesk Pro — Dashboard';
+  const tm=document.getElementById('theme-meta');
+  if(tm)tm.content='#0d0f14';
+  setupDashboardUI();
+  renderAll();
+  updateSheetsBar();
+  updateBadges();
+  startSLATimer();
+  runSLACheck();
+  logAudit('login','Log masuk ke dashboard');
+  updateAuditBadge();
+}
+
+function openStaffLogin(){
+  const lo=document.getElementById('login-overlay');
+  if(lo){lo.classList.add('open');setTimeout(()=>{const lb=document.getElementById('lb-user');if(lb)lb.focus();},80);}
+}
+function closeLoginOverlay(){
+  const lo=document.getElementById('login-overlay');
+  if(lo)lo.classList.remove('open');
+}
+
+document.getElementById('lb-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')_doLogin();});
+document.getElementById('lb-user')?.addEventListener('keydown',e=>{if(e.key==='Enter'){const lb=document.getElementById('lb-pass');if(lb)lb.focus();}});
 document.getElementById('login-overlay')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeLoginOverlay();});
 
+// ── Dashboard setup ───────────────────
 function setupDashboardUI(){
   const u=currentUser;if(!u)return;
-  document.getElementById('d-sb-name').textContent=u.nama;
-  document.getElementById('d-sb-role').textContent=u.role==='admin'?'Pentadbir':u.role==='tech'?'Teknikal':'Kakitangan';
+  const sbn=document.getElementById('d-sb-name');if(sbn)sbn.textContent=u.nama;
+  const sbr=document.getElementById('d-sb-role');if(sbr)sbr.textContent=u.role==='admin'?'Pentadbir':u.role==='tech'?'Teknikal':'Kakitangan';
   const av=document.getElementById('d-sb-avatar');
-  av.textContent=u.nama[0].toUpperCase();
-  av.style.background=u.role==='admin'?'rgba(124,92,252,0.2)':u.role==='tech'?'rgba(41,217,158,0.2)':'rgba(79,142,247,0.2)';
-  av.style.color=u.role==='admin'?'var(--d-accent2)':u.role==='tech'?'var(--d-green)':'var(--d-accent)';
+  if(av){
+    av.textContent=u.nama[0].toUpperCase();
+    av.style.background=u.role==='admin'?'rgba(124,92,252,0.2)':u.role==='tech'?'rgba(41,217,158,0.2)':'rgba(79,142,247,0.2)';
+    av.style.color=u.role==='admin'?'var(--d-accent2)':u.role==='tech'?'var(--d-green)':'var(--d-accent)';
+  }
   const isAdmin=u.role==='admin',cw=u.role!=='viewer';
   ['btn-tambah','btn-tambah2'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=cw?'':'none';});
   const np=document.getElementById('nav-pengguna');if(np)np.style.display=isAdmin?'flex':'none';
   const na=document.getElementById('nav-audit');if(na)na.style.display=isAdmin?'flex':'none';
   const bt=document.getElementById('btn-add-team');if(bt)bt.style.display=isAdmin?'':'none';
   const h=new Date().getHours(),dg=document.getElementById('dash-greeting');
-  if(dg)dg.textContent=(h<12?'Selamat Pagi':h<17?'Selamat Petang':'Selamat Malam')+`, ${u.nama}! 👋`;
-  populateTeamFilters();updateAuditBadge();
+  if(dg)dg.textContent=(h<12?'Selamat Pagi':h<17?'Selamat Petang':'Selamat Malam')+', '+u.nama+'! 👋';
+  populateTeamFilters();
+  updateAuditBadge();
 }
+
+// ── Cross-tab sync ────────────────────
 window.addEventListener('storage',function(e){
   if(e.key==='hd_aduan'&&e.newValue&&currentUser){
     const fresh=JSON.parse(e.newValue),diff=fresh.length-aduan.length;
-    if(diff>0){aduan=fresh;const n=[...aduan].sort((a,b)=>new Date(b.tarikh)-new Date(a.tarikh))[0];addNotif('🌐',`${diff} tiket baru dari Portal!`,n?`${n.id}: ${n.tajuk}`:'',n?.id||null);showToast(`🌐 ${diff} tiket baru dari Portal!`,'info');}
+    if(diff>0){aduan=fresh;const n=[...aduan].sort((a,b)=>new Date(b.tarikh)-new Date(a.tarikh))[0];addNotif('🌐',diff+' tiket baru dari Portal!',n?n.id+': '+n.tajuk:'',n?n.id:null);showToast(diff+' tiket baru dari Portal!','info');}
     else aduan=fresh;
     renderAll();updateBadges();
   }
   if(e.key==='hd_counter')ticketCounter=parseInt(e.newValue||'1000');
 });
 setInterval(()=>{if(!currentUser)return;const fresh=JSON.parse(localStorage.getItem('hd_aduan')||'[]');if(fresh.length!==aduan.length){aduan=fresh;renderAll();updateBadges();}},30000);
-function showToast(msg,type='success'){const t=document.getElementById('d-toast');if(!t)return;t.textContent=(type==='success'?'✅ ':type==='info'?'ℹ️ ':type==='warning'?'⚠️ ':'❌ ')+msg;t.className='d-toast '+type+' show';setTimeout(()=>t.className='d-toast '+type,3000);}
 
-// ═══ PORTAL FUNCTIONS ═══
+// ══ PORTAL FUNCTIONS ══════════════════
 function portalLoadAduan(){return JSON.parse(localStorage.getItem('hd_aduan')||'[]');}
 function portalSaveAduan(arr){localStorage.setItem('hd_aduan',JSON.stringify(arr));aduan=arr;}
 function portalGetCounter(){return parseInt(localStorage.getItem('hd_counter')||'1000');}
@@ -6654,6 +6583,8 @@ function portalTimeAgo(d){if(!d)return '';const m=(Date.now()-new Date(d))/60000
 function portalEscHtml(t){return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
 function escHtml(t){return portalEscHtml(t);}
 function timeAgo(d){return portalTimeAgo(d);}
+function formatDate(d){if(!d)return '—';const dt=new Date(d);return dt.toLocaleDateString('ms-MY',{day:'2-digit',month:'short',year:'numeric'})+' '+dt.toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'});}
+
 function initPortal(){
   if(portalInitDone){portalRenderStats();return;}portalInitDone=true;
   const fy=document.getElementById('footer-year');if(fy)fy.textContent='© '+new Date().getFullYear()+' HelpDesk Pro.';
@@ -6661,87 +6592,183 @@ function initPortal(){
   const p=new URLSearchParams(window.location.search),tid=p.get('tid');
   if(tid){portalSwitchTab('semak');const inp=document.getElementById('semak-input');if(inp){inp.value=tid;portalCariTiket();}}
 }
+
 function portalSwitchTab(tab){
   document.querySelectorAll('.p-tab-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.p-tab-btn').forEach(b=>b.classList.remove('active'));
   const pane=document.getElementById('p-tab-'+tab);if(pane)pane.classList.add('active');
   const idx=['buka','semak','qr'].indexOf(tab),btn=document.querySelectorAll('.p-tab-btn')[idx];if(btn)btn.classList.add('active');
-  if(tab==='qr')portalInitQR();if(tab==='semak')portalRenderStats();
+  if(tab==='qr')portalInitQR();
+  if(tab==='semak')portalRenderStats();
 }
+
 function portalSelectPri(val,el){
-  portalSelectedPri=val;const h=document.getElementById('f-priority');if(h)h.value=val;
-  document.querySelectorAll('.pri-card').forEach(c=>c.classList.remove('selected'));if(el)el.classList.add('selected');
+  portalSelectedPri=val;
+  const h=document.getElementById('f-priority');if(h)h.value=val;
+  document.querySelectorAll('.pri-card').forEach(c=>c.classList.remove('selected'));
+  if(el)el.classList.add('selected');
 }
 function updateCharCount(iid,cid,mx){const el=document.getElementById(iid),cel=document.getElementById(cid);if(el&&cel)cel.textContent=el.value.length;}
+
 function portalValidate(){
   const g=id=>document.getElementById(id)?.value.trim()||'',errs=[];
-  if(!g('f-nama'))errs.push('Nama penuh diperlukan');if(!g('f-dept'))errs.push('Jabatan diperlukan');
-  if(!g('f-tel'))errs.push('No. telefon diperlukan');if(!g('f-tajuk'))errs.push('Tajuk aduan diperlukan');
+  if(!g('f-nama'))errs.push('Nama penuh diperlukan');
+  if(!g('f-dept'))errs.push('Jabatan diperlukan');
+  if(!g('f-tel'))errs.push('No. telefon diperlukan');
+  if(!g('f-tajuk'))errs.push('Tajuk aduan diperlukan');
   if(!document.getElementById('f-kategori')?.value)errs.push('Sila pilih kategori');
-  if(!g('f-huraian'))errs.push('Huraian masalah diperlukan');if(g('f-huraian').length<20)errs.push('Huraian terlalu pendek (min 20 aksara)');
+  if(!g('f-huraian'))errs.push('Huraian masalah diperlukan');
+  if(g('f-huraian').length<20)errs.push('Huraian terlalu pendek (min 20 aksara)');
   return errs;
 }
+
 function submitAduan(){
   const errs=portalValidate(),errEl=document.getElementById('submit-error');
-  if(errs.length){if(errEl){errEl.style.display='flex';Object.assign(errEl.style,{background:'rgba(239,68,68,.07)',border:'1px solid rgba(239,68,68,.3)',color:'#991b1b',borderRadius:'9px',padding:'11px 14px',fontSize:'13px',lineHeight:'1.6',flexDirection:'column',gap:'4px'});errEl.innerHTML='<b>❌ Sila betulkan:</b><ul style="margin:3px 0 0 16px;">'+errs.map(e=>`<li>${e}</li>`).join('')+'</ul>';errEl.scrollIntoView({behavior:'smooth',block:'center'});}return;}
+  if(errs.length){
+    if(errEl){
+      errEl.style.display='flex';
+      Object.assign(errEl.style,{background:'rgba(239,68,68,.07)',border:'1px solid rgba(239,68,68,.3)',color:'#991b1b',borderRadius:'9px',padding:'11px 14px',fontSize:'13px',flexDirection:'column',gap:'4px'});
+      errEl.innerHTML='<b>❌ Sila betulkan:</b><ul style="margin:3px 0 0 16px;">'+errs.map(e=>'<li>'+e+'</li>').join('')+'</ul>';
+      errEl.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    return;
+  }
   if(errEl)errEl.style.display='none';
-  const btn=document.getElementById('submit-btn');if(btn){btn.disabled=true;btn.textContent='⏳ Menghantar...';}
+  const btn=document.getElementById('submit-btn');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Menghantar...';}
   const g=id=>document.getElementById(id)?.value.trim()||'';
   const now=new Date().toISOString(),id=portalGenId();
-  const ticket={id,nama:g('f-nama'),dept:g('f-dept'),tel:g('f-tel'),emel:g('f-emel'),tajuk:g('f-tajuk'),kategori:document.getElementById('f-kategori')?.value||'',huraian:g('f-huraian')+(g('f-lokasi')?'\n\nLokasi: '+g('f-lokasi'):''),priority:portalSelectedPri,status:'Baru',tarikh:now,kemaskini:now,createdBy:'portal-pengadu',source:'portal',assignedTo:null,synced:false,komens:[],timeline:[{time:now,msg:'Tiket dibuka melalui Portal Pengadu',by:g('f-nama'),color:'#3b82f6'}]};
+  const ticket={
+    id,nama:g('f-nama'),dept:g('f-dept'),tel:g('f-tel'),emel:g('f-emel'),
+    tajuk:g('f-tajuk'),kategori:document.getElementById('f-kategori')?.value||'',
+    huraian:g('f-huraian')+(g('f-lokasi')?'\n\nLokasi: '+g('f-lokasi'):''),
+    priority:portalSelectedPri,status:'Baru',tarikh:now,kemaskini:now,
+    createdBy:'portal-pengadu',source:'portal',assignedTo:null,synced:false,
+    komens:[],timeline:[{time:now,msg:'Tiket dibuka melalui Portal Pengadu',by:g('f-nama'),color:'#3b82f6'}]
+  };
   const arr=portalLoadAduan();arr.push(ticket);portalSaveAduan(arr);
-  setTimeout(()=>{if(btn){btn.disabled=false;btn.textContent='🎫 Hantar Aduan Sekarang';}const stid=document.getElementById('success-tid');if(stid)stid.textContent=id;const fs=document.getElementById('form-state'),ss=document.getElementById('success-state');if(fs)fs.style.display='none';if(ss){ss.style.display='block';ss.scrollIntoView({behavior:'smooth'});}localStorage.setItem('portal_last_tid',id);},700);
+  setTimeout(()=>{
+    if(btn){btn.disabled=false;btn.textContent='🎫 Hantar Aduan Sekarang';}
+    const stid=document.getElementById('success-tid');if(stid)stid.textContent=id;
+    const fs=document.getElementById('form-state'),ss=document.getElementById('success-state');
+    if(fs)fs.style.display='none';
+    if(ss){ss.style.display='block';ss.scrollIntoView({behavior:'smooth'});}
+    localStorage.setItem('portal_last_tid',id);
+  },700);
 }
+
 function copyTicketId(){const tid=document.getElementById('success-tid')?.textContent||'';navigator.clipboard?.writeText(tid).then(()=>showToast('Nombor tiket disalin!','success'));}
-function resetForm(){['f-nama','f-dept','f-tel','f-emel','f-tajuk','f-huraian','f-lokasi'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});const fk=document.getElementById('f-kategori');if(fk)fk.value='';['cc-tajuk','cc-huraian'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='0';});portalSelectPri('Sederhana',document.querySelector('.pri-card.sederhana'));const ss=document.getElementById('success-state');if(ss)ss.style.display='none';const fs=document.getElementById('form-state');if(fs)fs.style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
+function resetForm(){
+  ['f-nama','f-dept','f-tel','f-emel','f-tajuk','f-huraian','f-lokasi'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const fk=document.getElementById('f-kategori');if(fk)fk.value='';
+  ['cc-tajuk','cc-huraian'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='0';});
+  portalSelectPri('Sederhana',document.querySelector('.pri-card.sederhana'));
+  const ss=document.getElementById('success-state');if(ss)ss.style.display='none';
+  const fs=document.getElementById('form-state');if(fs)fs.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 function goSemak(){const tid=document.getElementById('success-tid')?.textContent||'';portalSwitchTab('semak');const inp=document.getElementById('semak-input');if(inp)inp.value=tid;portalCariTiket();}
-function portalGetBadge(s){const m={'Baru':['sb-baru','🔵 Baru'],'Dalam Proses':['sb-proses','🟠 Dalam Proses'],'Selesai':['sb-selesai','✅ Selesai'],'Tutup':['sb-tutup','⚫ Tutup']};const[cls,lbl]=m[s]||['sb-baru',s];return`<span class="s-badge ${cls}">${lbl}</span>`;}
+
+function portalGetBadge(s){
+  const m={'Baru':'<span class="s-badge sb-baru">🔵 Baru</span>','Dalam Proses':'<span class="s-badge sb-proses">🟠 Dalam Proses</span>','Selesai':'<span class="s-badge sb-selesai">✅ Selesai</span>','Tutup':'<span class="s-badge sb-tutup">⚫ Tutup</span>'};
+  return m[s]||'<span class="s-badge sb-baru">'+s+'</span>';
+}
 function portalPriColor(p){return{Kritikal:'#dc2626',Tinggi:'#ea580c',Sederhana:'#d97706',Rendah:'#059669'}[p]||'#64748b';}
-function portalSLAInfo(a){const H={Kritikal:4,Tinggi:8,Sederhana:24,Rendah:72};if(!a.tarikh||a.status==='Selesai'||a.status==='Tutup')return null;const hrs=(Date.now()-new Date(a.tarikh))/3600000,lim=H[a.priority]||24;return{pct:Math.min(hrs/lim,1),isOver:hrs>=lim,remaining:lim-hrs};}
+function portalSLAInfo(a){
+  const H={Kritikal:4,Tinggi:8,Sederhana:24,Rendah:72};
+  if(!a.tarikh||a.status==='Selesai'||a.status==='Tutup')return null;
+  const hrs=(Date.now()-new Date(a.tarikh))/3600000,lim=H[a.priority]||24;
+  return{pct:Math.min(hrs/lim,1),isOver:hrs>=lim,remaining:lim-hrs};
+}
 function cariTiket(){portalCariTiket();}
 function toggleCard(i){const c=document.getElementById('sc-'+i);if(c)c.classList.toggle('expanded');}
 function submitPKomen(id,i){portalSubmitKomen(id,i);}
 function hoverStars(n,i){portalHoverStars(n,i);}
 function resetStars(i){portalResetStars(i);}
 function submitRating(tid,r,i){portalSubmitRating(tid,r,i);}
+
 function portalCariTiket(){
-  const q=(document.getElementById('semak-input')?.value||'').trim().toLowerCase(),results=document.getElementById('semak-results');
-  if(!results)return;if(!q||q.length<2){results.innerHTML='';return;}
-  const arr=portalLoadAduan(),found=arr.filter(a=>a.id.toLowerCase().includes(q)||(a.nama||'').toLowerCase().includes(q)||(a.tel||'').includes(q)).sort((a,b)=>new Date(b.tarikh)-new Date(a.tarikh)).slice(0,8);
-  if(!found.length){results.innerHTML=`<div class="not-found">❌ Tiada tiket ditemui untuk "<b>${q}</b>".<br><small>Cuba nombor tiket (TKT-0001), nama, atau telefon.</small></div>`;return;}
+  const q=(document.getElementById('semak-input')?.value||'').trim().toLowerCase();
+  const results=document.getElementById('semak-results');
+  if(!results)return;
+  if(!q||q.length<2){results.innerHTML='';return;}
+  const arr=portalLoadAduan();
+  const found=arr.filter(a=>a.id.toLowerCase().includes(q)||(a.nama||'').toLowerCase().includes(q)||(a.tel||'').includes(q)).sort((a,b)=>new Date(b.tarikh)-new Date(a.tarikh)).slice(0,8);
+  if(!found.length){results.innerHTML='<div class="not-found">❌ Tiada tiket ditemui untuk "<b>'+q+'</b>".<br><small>Cuba nombor tiket (TKT-0001), nama, atau telefon.</small></div>';return;}
   results.innerHTML=found.map((a,i)=>{
-    const sla=portalSLAInfo(a),pct=sla?Math.round(sla.pct*100):100,sc=sla?.isOver?'#dc2626':pct>=75?'#d97706':'#059669';
-    const sl=a.status==='Selesai'||a.status==='Tutup'?`✅ ${a.status}`:sla?.isOver?'🚨 SLA Terlepas':pct>=75?'⚠️ Hampir':'✓ SLA OK';
+    const sla=portalSLAInfo(a),pct=sla?Math.round(sla.pct*100):100;
+    const sc=sla?.isOver?'#dc2626':pct>=75?'#d97706':'#059669';
+    const sl=a.status==='Selesai'||a.status==='Tutup'?'✅ '+a.status:sla?.isOver?'🚨 SLA Terlepas':pct>=75?'⚠️ Hampir':'✓ SLA OK';
     const pubK=(a.komens||[]).filter(k=>!k.dalaman);
-    return`<div class="status-card" id="sc-${i}" onclick="toggleCard(${i})">
-      <div class="status-header"><span class="status-tid">${a.id}</span>${portalGetBadge(a.status)}<span class="s-badge" style="background:rgba(0,0,0,.05);color:${portalPriColor(a.priority)};border:1px solid ${portalPriColor(a.priority)}44;">${a.priority}</span>${a.source==='portal'?'<span style="font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(139,92,246,.1);color:#7c3aed;">🌐 Portal</span>':''}</div>
-      <div style="font-size:14px;font-weight:600;margin:7px 0 3px;color:#0f172a;">${a.tajuk}</div>
-      <div style="font-size:12px;color:#64748b;">👤 ${a.nama} · ${formatDate(a.tarikh)}</div>
-      ${sla?`<div style="margin-top:8px;"><div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px;"><span style="color:${sc};font-weight:700;">${sl}</span><span style="color:#64748b;">${pct}% masa</span></div><div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:${sc};"></div></div></div>`:''}
-      <div class="status-detail" id="sd-${i}">
-        <div class="detail-grid"><div class="detail-block"><div class="detail-lbl">Pengadu</div><div class="detail-val">${a.nama}</div></div><div class="detail-block"><div class="detail-lbl">Jabatan</div><div class="detail-val">${a.dept||'—'}</div></div><div class="detail-block"><div class="detail-lbl">Kategori</div><div class="detail-val">${a.kategori}</div></div><div class="detail-block"><div class="detail-lbl">Tarikh</div><div class="detail-val">${formatDate(a.tarikh)}</div></div></div>
-        <div class="detail-lbl" style="margin-bottom:5px;">Huraian Masalah</div>
-        <div class="detail-desc-box">${portalEscHtml(a.huraian||'—')}</div>
-        ${a.resolveNote?`<div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:9px;padding:11px;margin-bottom:12px;font-size:13px;color:#065f46;">✅ <b>Penyelesaian:</b> ${portalEscHtml(a.resolveNote)}<br><small>Oleh: ${a.resolvedBy||'—'} · ${formatDate(a.resolvedAt)}</small></div>`:''}
-        ${(a.timeline||[]).length?`<div class="detail-lbl" style="margin-bottom:7px;">📜 Sejarah</div><div>${[...(a.timeline||[])].reverse().slice(0,4).map(t=>`<div class="tl-item"><div class="tl-dot" style="background:${t.color||'#3b82f6'}"></div><div><div class="tl-msg">${portalEscHtml(t.msg)}</div><div class="tl-time">${portalTimeAgo(t.time)}</div></div></div>`).join('')}</div>`:''}
-        ${pubK.length?`<div class="detail-lbl" style="margin:12px 0 7px;">💬 Maklum Balas Staf (${pubK.length})</div>${pubK.slice(-4).map(k=>`<div class="pk-item"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap;"><span class="pk-name">${k.nama}</span><span class="pk-role" style="background:${k.role==='tech'?'rgba(16,185,129,.1)':'rgba(59,130,246,.1)'};color:${k.role==='tech'?'#065f46':'#1d4ed8'};">${k.role==='tech'?'🔧 Teknikal':'👤 Staf'}</span><span class="pk-time">${portalTimeAgo(k.time)}</span></div><div class="pk-body">${portalEscHtml(k.text)}</div></div>`).join('')}`:''}
-        ${a.status!=='Selesai'&&a.status!=='Tutup'?`<div class="komen-pengadu"><div style="font-size:11.5px;font-weight:700;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.7px;">💬 Tambah Maklumat Tambahan</div><textarea class="p-input" id="pk-text-${i}" placeholder="Maklumat tambahan untuk team teknikal..." style="min-height:65px;font-size:13px;margin-bottom:8px;"></textarea><button onclick="portalSubmitKomen('${a.id}',${i})" style="padding:8px 16px;border-radius:8px;border:1.5px solid #e2e8f0;background:#f8fafc;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;color:#0f172a;">📨 Hantar</button></div>`:''}
-        ${a.status==='Selesai'&&!a.rating?`<div style="text-align:center;padding:14px;background:#f8fafc;border-radius:10px;margin-top:10px;"><div style="font-size:13.5px;font-weight:700;margin-bottom:8px;color:#0f172a;">⭐ Nilaikan Perkhidmatan Kami</div><div id="stars-${i}" style="display:flex;justify-content:center;gap:7px;margin-bottom:5px;">${[1,2,3,4,5].map(n=>`<span class="star" onclick="portalSubmitRating('${a.id}',${n},${i})" onmouseover="portalHoverStars(${n},${i})" onmouseout="portalResetStars(${i})">⭐</span>`).join('')}</div><div id="rl-${i}" style="font-size:12px;color:#64748b;">Klik bintang untuk beri penilaian</div></div>`:''}
-        ${a.rating?`<div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:9px;padding:10px 14px;font-size:13px;color:#065f46;">⭐ Penilaian ${a.rating}/5 diterima. Terima kasih!</div>`:''}
-      </div></div>`;
+    return '<div class="status-card" id="sc-'+i+'" onclick="toggleCard('+i+')">'+
+      '<div class="status-header"><span class="status-tid">'+a.id+'</span>'+portalGetBadge(a.status)+
+      '<span class="s-badge" style="background:rgba(0,0,0,.05);color:'+portalPriColor(a.priority)+';border:1px solid '+portalPriColor(a.priority)+'44;">'+a.priority+'</span>'+
+      (a.source==='portal'?'<span style="font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(139,92,246,.1);color:#7c3aed;">🌐 Portal</span>':'')+
+      '</div><div style="font-size:14px;font-weight:600;margin:7px 0 3px;color:#0f172a;">'+a.tajuk+'</div>'+
+      '<div style="font-size:12px;color:#64748b;">👤 '+a.nama+' · '+formatDate(a.tarikh)+'</div>'+
+      (sla?'<div style="margin-top:8px;"><div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px;"><span style="color:'+sc+';font-weight:700;">'+sl+'</span><span style="color:#64748b;">'+pct+'% masa</span></div><div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%;background:'+sc+';"></div></div></div>':'')+
+      '<div class="status-detail" id="sd-'+i+'">'+
+        '<div class="detail-grid">'+
+          '<div class="detail-block"><div class="detail-lbl">Pengadu</div><div class="detail-val">'+a.nama+'</div></div>'+
+          '<div class="detail-block"><div class="detail-lbl">Jabatan</div><div class="detail-val">'+(a.dept||'—')+'</div></div>'+
+          '<div class="detail-block"><div class="detail-lbl">Kategori</div><div class="detail-val">'+a.kategori+'</div></div>'+
+          '<div class="detail-block"><div class="detail-lbl">Tarikh</div><div class="detail-val">'+formatDate(a.tarikh)+'</div></div>'+
+        '</div>'+
+        '<div class="detail-lbl" style="margin-bottom:5px;">Huraian Masalah</div>'+
+        '<div class="detail-desc-box">'+portalEscHtml(a.huraian||'—')+'</div>'+
+        (a.resolveNote?'<div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:9px;padding:11px;margin-bottom:12px;font-size:13px;color:#065f46;">✅ <b>Penyelesaian:</b> '+portalEscHtml(a.resolveNote)+'<br><small>Oleh: '+(a.resolvedBy||'—')+' · '+formatDate(a.resolvedAt)+'</small></div>':'')+
+        ((a.timeline||[]).length?'<div class="detail-lbl" style="margin-bottom:7px;">📜 Sejarah</div><div>'+[...(a.timeline||[])].reverse().slice(0,4).map(t=>'<div class="tl-item"><div class="tl-dot" style="background:'+(t.color||'#3b82f6')+'"></div><div><div class="tl-msg">'+portalEscHtml(t.msg)+'</div><div class="tl-time">'+portalTimeAgo(t.time)+'</div></div></div>').join('')+'</div>':'')+
+        (pubK.length?'<div class="detail-lbl" style="margin:12px 0 7px;">💬 Maklum Balas Staf ('+pubK.length+')</div>'+pubK.slice(-4).map(k=>'<div class="pk-item"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap;"><span class="pk-name">'+k.nama+'</span><span class="pk-role" style="background:'+(k.role==='tech'?'rgba(16,185,129,.1)':'rgba(59,130,246,.1)')+';color:'+(k.role==='tech'?'#065f46':'#1d4ed8')+'">'+(k.role==='tech'?'🔧 Teknikal':'👤 Staf')+'</span><span class="pk-time">'+portalTimeAgo(k.time)+'</span></div><div class="pk-body">'+portalEscHtml(k.text)+'</div></div>').join(''):'')+
+        (a.status!=='Selesai'&&a.status!=='Tutup'?'<div class="komen-pengadu"><div style="font-size:11.5px;font-weight:700;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:.7px;">💬 Tambah Maklumat Tambahan</div><textarea class="p-input" id="pk-text-'+i+'" placeholder="Maklumat tambahan untuk team teknikal..." style="min-height:65px;font-size:13px;margin-bottom:8px;"></textarea><button onclick="portalSubmitKomen(''+a.id+'','+i+')" style="padding:8px 16px;border-radius:8px;border:1.5px solid #e2e8f0;background:#f8fafc;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;color:#0f172a;">📨 Hantar</button></div>':'')+
+        (a.status==='Selesai'&&!a.rating?'<div style="text-align:center;padding:14px;background:#f8fafc;border-radius:10px;margin-top:10px;"><div style="font-size:13.5px;font-weight:700;margin-bottom:8px;color:#0f172a;">⭐ Nilaikan Perkhidmatan Kami</div><div id="stars-'+i+'" style="display:flex;justify-content:center;gap:7px;margin-bottom:5px;">'+[1,2,3,4,5].map(n=>'<span class="star" onclick="portalSubmitRating(''+a.id+'','+n+','+i+')" onmouseover="portalHoverStars('+n+','+i+')" onmouseout="portalResetStars('+i+')">⭐</span>').join('')+'</div><div id="rl-'+i+'" style="font-size:12px;color:#64748b;">Klik bintang untuk beri penilaian</div></div>':'')+
+        (a.rating?'<div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);border-radius:9px;padding:10px 14px;font-size:13px;color:#065f46;">⭐ Penilaian '+a.rating+'/5 diterima. Terima kasih!</div>':'')+
+      '</div></div>';
   }).join('');
 }
-function portalSubmitKomen(ticketId,i){const text=document.getElementById(`pk-text-${i}`)?.value.trim()||'';if(text.length<5){showToast('Sila taip lebih panjang','error');return;}const nama=document.getElementById('semak-input')?.value.trim()||'Pengadu';const arr=portalLoadAduan(),idx=arr.findIndex(a=>a.id===ticketId);if(idx===-1)return;if(!arr[idx].komens)arr[idx].komens=[];arr[idx].komens.push({id:'pk'+Date.now(),user:'pengadu',nama,role:'pengadu',text,dalaman:false,time:new Date().toISOString(),reactions:{},fromPortal:true});arr[idx].timeline=arr[idx].timeline||[];arr[idx].timeline.push({time:new Date().toISOString(),msg:`Maklumat tambahan dari pengadu: "${text.slice(0,50)}..."`,by:nama,color:'#10b981'});portalSaveAduan(arr);const box=document.getElementById(`pk-text-${i}`);if(box)box.value='';portalCariTiket();showToast('Maklumat dihantar!','success');}
-function portalHoverStars(n,i){document.querySelectorAll(`#stars-${i} .star`).forEach((s,j)=>s.classList.toggle('lit',j<n));const labels=['','Sangat Tidak Puas','Tidak Puas','Sederhana','Berpuas Hati','Sangat Berpuas Hati'];const rl=document.getElementById(`rl-${i}`);if(rl)rl.textContent=labels[n];}
-function portalResetStars(i){document.querySelectorAll(`#stars-${i} .star`).forEach(s=>s.classList.remove('lit'));const rl=document.getElementById(`rl-${i}`);if(rl)rl.textContent='Klik bintang untuk beri penilaian';}
-function portalSubmitRating(tid,rating,i){const arr=portalLoadAduan(),idx=arr.findIndex(a=>a.id===tid);if(idx===-1)return;arr[idx].rating=rating;arr[idx].ratingTime=new Date().toISOString();portalSaveAduan(arr);portalCariTiket();showToast(`⭐ Penilaian ${rating}/5 diterima!`,'success');}
-function portalRenderStats(){const arr=portalLoadAduan(),el=document.getElementById('portal-stats');if(!el)return;const stats=[{l:'Jumlah Tiket',v:arr.length,c:'#3b82f6'},{l:'Dari Portal',v:arr.filter(a=>a.source==='portal').length,c:'#8b5cf6'},{l:'Dalam Proses',v:arr.filter(a=>a.status==='Dalam Proses').length,c:'#d97706'},{l:'Selesai',v:arr.filter(a=>a.status==='Selesai').length,c:'#10b981'}];el.innerHTML=stats.map(s=>`<div class="portal-stat"><div class="portal-stat-num" style="color:${s.c}">${s.v}</div><div class="portal-stat-lbl">${s.l}</div></div>`).join('');}
-function portalInitQR(){if(portalQrDone){portalRenderStats();return;}const url=window.location.href.split('?')[0].split('#')[0];const ut=document.getElementById('qr-url-text');if(ut)ut.textContent=url;const c=document.getElementById('qr-container');if(c&&typeof QRCode!=='undefined'){c.innerHTML='';new QRCode(c,{text:url,width:200,height:200,colorDark:'#0f172a',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});portalQrDone=true;}portalRenderStats();}
+
+function portalSubmitKomen(ticketId,i){
+  const text=document.getElementById('pk-text-'+i)?.value.trim()||'';
+  if(text.length<5){showToast('Sila taip lebih panjang','error');return;}
+  const nama=document.getElementById('semak-input')?.value.trim()||'Pengadu';
+  const arr=portalLoadAduan(),idx=arr.findIndex(a=>a.id===ticketId);
+  if(idx===-1)return;
+  if(!arr[idx].komens)arr[idx].komens=[];
+  arr[idx].komens.push({id:'pk'+Date.now(),user:'pengadu',nama,role:'pengadu',text,dalaman:false,time:new Date().toISOString(),reactions:{},fromPortal:true});
+  arr[idx].timeline=arr[idx].timeline||[];
+  arr[idx].timeline.push({time:new Date().toISOString(),msg:'Maklumat tambahan dari pengadu: "'+text.slice(0,50)+'..."',by:nama,color:'#10b981'});
+  portalSaveAduan(arr);
+  const box=document.getElementById('pk-text-'+i);if(box)box.value='';
+  portalCariTiket();showToast('Maklumat dihantar!','success');
+}
+function portalHoverStars(n,i){document.querySelectorAll('#stars-'+i+' .star').forEach((s,j)=>s.classList.toggle('lit',j<n));const labels=['','Sangat Tidak Puas','Tidak Puas','Sederhana','Berpuas Hati','Sangat Berpuas Hati'];const rl=document.getElementById('rl-'+i);if(rl)rl.textContent=labels[n];}
+function portalResetStars(i){document.querySelectorAll('#stars-'+i+' .star').forEach(s=>s.classList.remove('lit'));const rl=document.getElementById('rl-'+i);if(rl)rl.textContent='Klik bintang untuk beri penilaian';}
+function portalSubmitRating(tid,rating,i){const arr=portalLoadAduan(),idx=arr.findIndex(a=>a.id===tid);if(idx===-1)return;arr[idx].rating=rating;arr[idx].ratingTime=new Date().toISOString();portalSaveAduan(arr);portalCariTiket();showToast('⭐ Penilaian '+rating+'/5 diterima!','success');}
+function portalRenderStats(){
+  const arr=portalLoadAduan(),el=document.getElementById('portal-stats');if(!el)return;
+  const stats=[{l:'Jumlah Tiket',v:arr.length,c:'#3b82f6'},{l:'Dari Portal',v:arr.filter(a=>a.source==='portal').length,c:'#8b5cf6'},{l:'Dalam Proses',v:arr.filter(a=>a.status==='Dalam Proses').length,c:'#d97706'},{l:'Selesai',v:arr.filter(a=>a.status==='Selesai').length,c:'#10b981'}];
+  el.innerHTML=stats.map(s=>'<div class="portal-stat"><div class="portal-stat-num" style="color:'+s.c+'">'+s.v+'</div><div class="portal-stat-lbl">'+s.l+'</div></div>').join('');
+}
+function portalInitQR(){
+  if(portalQrDone){portalRenderStats();return;}
+  const url=window.location.href.split('?')[0].split('#')[0];
+  const ut=document.getElementById('qr-url-text');if(ut)ut.textContent=url;
+  const c=document.getElementById('qr-container');
+  if(c&&typeof QRCode!=='undefined'){c.innerHTML='';new QRCode(c,{text:url,width:200,height:200,colorDark:'#0f172a',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});portalQrDone=true;}
+  portalRenderStats();
+}
 function copyURL(){const url=window.location.href.split('?')[0];navigator.clipboard?.writeText(url).then(()=>showToast('Pautan disalin!','success'));}
-function cetakQR(){const q=document.querySelector('#qr-container img')||document.querySelector('#qr-container canvas'),url=window.location.href.split('?')[0];const w=window.open('','','width=600,height=700');w.document.write(`<!DOCTYPE html><html><head><title>QR HelpDesk Pro</title><style>body{font-family:Arial;text-align:center;padding:40px;}h2{font-size:22px;}p{color:#666;font-size:13px;margin-bottom:20px;}img,canvas{border:2px solid #e2e8f0;border-radius:12px;padding:10px;}.url{background:#f8f9ff;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:11px;word-break:break-all;margin-top:14px;}@media print{@page{margin:1cm;}}</style></head><body><h2>🎯 Portal Aduan HelpDesk Pro</h2><p>Imbas QR code untuk hantar aduan</p>${q?(q.tagName==='IMG'?`<img src="${q.src}">`:`<img src="${q.toDataURL()}">`):'QR'}<div class="url">${url}</div><script>window.onload=()=>window.print();<\/script></body></html>`);w.document.close();}
+function cetakQR(){
+  const q=document.querySelector('#qr-container img')||document.querySelector('#qr-container canvas');
+  const url=window.location.href.split('?')[0];
+  const w=window.open('','','width=600,height=700');
+  w.document.write('<!DOCTYPE html><html><head><title>QR HelpDesk Pro</title><style>body{font-family:Arial;text-align:center;padding:40px;}h2{font-size:22px;}p{color:#666;font-size:13px;margin-bottom:20px;}img,canvas{border:2px solid #e2e8f0;border-radius:12px;padding:10px;}.url{background:#f8f9ff;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:11px;word-break:break-all;margin-top:14px;}@media print{@page{margin:1cm;}}</style></head><body><h2>🎯 Portal Aduan HelpDesk Pro</h2><p>Imbas QR code untuk hantar aduan</p>'+(q?(q.tagName==='IMG'?'<img src="'+q.src+'">':(q.toDataURL?'<img src="'+q.toDataURL()+'">':'QR Code')):'QR Code')+'<div class="url">'+url+'</div><script>window.onload=()=>window.print();<\/script></body></html>');
+  w.document.close();
+}
 window['muat-turunQR']=function(){const c=document.querySelector('#qr-container canvas');if(c){const a=document.createElement('a');a.download='helpdesk-qr.png';a.href=c.toDataURL();a.click();}else showToast('QR belum dijana','error');};
-window.addEventListener('DOMContentLoaded',initApp);
+
+window.addEventListener('DOMContentLoaded', initApp);
 
 </script>
+
 </body>
 </html>
